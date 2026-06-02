@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>오목 — GOMOKU</title>
+  <meta name="description" content="플레이어 vs AI 오목 게임. 10×10 보드에서 5목을 먼저 완성하세요!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========== INTRO SCENE ========== -->
+  <section id="scene-intro" class="scene active">
+    <canvas id="particle-canvas"></canvas>
+    <div class="intro-content">
+      <div class="intro-logo">
+        <span class="logo-go">GO</span><span class="logo-moku">MOKU</span>
+      </div>
+      <p class="intro-sub">오목</p>
+      <p class="intro-desc">플레이어 vs AI · 10×10 · 5목 승리</p>
+      <button id="btn-start" class="neon-btn" aria-label="게임 시작">
+        <span class="btn-text">게임 시작</span>
+        <span class="btn-glow"></span>
+      </button>
+    </div>
+    <div class="intro-stones-deco" aria-hidden="true">
+      <div class="deco-stone black"></div>
+      <div class="deco-stone white"></div>
+      <div class="deco-stone black"></div>
+      <div class="deco-stone white"></div>
+      <div class="deco-stone black"></div>
+    </div>
+  </section>
+
+  <!-- ========== GAME SCENE ========== -->
+  <section id="scene-game" class="scene">
+    <div class="game-wrapper">
+
+      <!-- HUD Top -->
+      <header class="game-hud">
+        <div class="hud-player" id="hud-player">
+          <div class="hud-stone black"></div>
+          <div class="hud-info">
+            <span class="hud-label">PLAYER</span>
+            <span class="hud-score" id="score-player">0</span>
+          </div>
+          <div class="hud-turn-indicator" id="turn-player"></div>
+        </div>
+
+        <div class="hud-center">
+          <div class="turn-badge" id="turn-badge">
+            <span id="turn-text">준비 중...</span>
+          </div>
+          <div class="move-counter">
+            <span id="move-count">0</span><span class="move-label"> 수</span>
+          </div>
+        </div>
+
+        <div class="hud-player right" id="hud-ai">
+          <div class="hud-turn-indicator" id="turn-ai"></div>
+          <div class="hud-info right">
+            <span class="hud-label">AI</span>
+            <span class="hud-score" id="score-ai">0</span>
+          </div>
+          <div class="hud-stone white"></div>
+        </div>
+      </header>
+
+      <!-- Board -->
+      <main class="board-container">
+        <canvas id="board-canvas"></canvas>
+        <div class="board-overlay" id="board-overlay" aria-live="polite"></div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="game-footer">
+        <button id="btn-restart-game" class="ghost-btn" aria-label="게임 다시 시작">↺ 다시 시작</button>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-stone black"></span> 내 돌</span>
+          <span class="legend-item"><span class="legend-stone white"></span> AI 돌</span>
+        </div>
+      </footer>
+
+    </div>
+  </section>
+
+  <!-- ========== RESULT SCENE ========== -->
+  <section id="scene-result" class="scene">
+    <canvas id="result-particle-canvas"></canvas>
+    <div class="result-content">
+      <div class="result-icon" id="result-icon" aria-hidden="true"></div>
+      <h1 class="result-title" id="result-title">게임 종료</h1>
+      <p class="result-sub" id="result-sub">수고하셨습니다!</p>
+      <div class="result-stones" id="result-stones" aria-hidden="true">
+        <div class="res-stone" id="res-stone-1"></div>
+        <div class="res-stone winner-stone" id="res-stone-winner"></div>
+        <div class="res-stone" id="res-stone-2"></div>
+      </div>
+      <button id="btn-play-again" class="neon-btn" aria-label="다시 플레이">
+        <span class="btn-text">PLAY AGAIN</span>
+        <span class="btn-glow"></span>
+      </button>
+    </div>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+</html>
